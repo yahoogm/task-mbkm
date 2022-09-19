@@ -1,8 +1,8 @@
-import "./App.css";
-import React, { useState } from "react";
-import Navbar from "./components/navbar/Navbar";
-import Task from "./components/task/Task";
-import Button from "./components/button/Button";
+import './App.css';
+import React, { useState } from 'react';
+import Navbar from './components/navbar/Navbar';
+import Task from './components/task/Task';
+import Button from './components/button/Button';
 
 const App = () => {
   // useState untuk bagian show & hide input
@@ -12,17 +12,17 @@ const App = () => {
   const [list, setList] = useState([
     {
       id: 1,
-      title: "Makan",
+      title: 'Makan',
       complete: false,
     },
     {
       id: 2,
-      title: "Minum",
+      title: 'Minum',
       complete: false,
     },
   ]);
   const [idEdit, setIdEdit] = useState(null);
-  const [inputEdit, setInputEdit] = useState("");
+  const [inputEdit, setInputEdit] = useState('');
   const [onEdit, setOnEdit] = useState(false);
 
   const completeTask = (id) => {
@@ -38,7 +38,7 @@ const App = () => {
 
     const title = e.target.previousSibling.value;
 
-    if (title === "") {
+    if (title === '') {
       return;
     }
 
@@ -51,7 +51,7 @@ const App = () => {
     setList((prevList) => {
       return [...prevList, newTask];
     });
-    setInputEdit("");
+    setInputEdit('');
   };
 
   // --------- end function untuk menambahkan task -------------------
@@ -89,7 +89,7 @@ const App = () => {
       return i.id === idEdit ? insert : i;
     });
     setList(updatedList);
-    setInputEdit("");
+    setInputEdit('');
     setOnEdit(false);
   };
 
@@ -101,18 +101,18 @@ const App = () => {
       <div className="space-y-10">
         <div className="flex justify-center mt-20 mb-10">
           <Button
-            text={showInput ? "Hide Todo" : "Show Todo"}
+            text={showInput ? 'Hide Todo' : 'Show Todo'}
             onClick={() => setShowInput(!showInput)}
-            mode={showInput ? "bg-blue-400 p-3 rounded-md text-white font-semibold hover:bg-blue-500 shadow-md" : "bg-green-400 p-3 rounded-md text-white font-semibold hover:bg-green-500 shadow-md"}
+            mode={showInput ? 'bg-blue-400 p-3 rounded-md text-white font-semibold hover:bg-blue-500 shadow-md' : 'bg-green-400 p-3 rounded-md text-white font-semibold hover:bg-green-500 shadow-md'}
           />
         </div>
         {showInput && (
           <form className="bg-blue-300 p-2 rounded-md space-x-2 shadow-md text-center m-auto  w-[32rem]">
             <input type="text" name="name" placeholder="Enter Todo" className="p-3  w-[26rem] rounded-md" value={inputEdit} onChange={onChangeEdit} required />
             <Button
-              text={onEdit ? "Edit" : "Add"}
+              text={onEdit ? 'Edit' : 'Add'}
               onClick={onEdit ? editTask : addTask}
-              mode={onEdit ? "bg-green-500 p-3 rounded-md text-white font-semibold hover:bg-green-600 shadow-md" : "bg-blue-400 p-3 rounded-md text-white font-semibold hover:bg-blue-500 shadow-md"}
+              mode={onEdit ? 'bg-green-500 p-3 rounded-md text-white font-semibold hover:bg-green-600 shadow-md' : 'bg-blue-400 p-3 rounded-md text-white font-semibold hover:bg-blue-500 shadow-md'}
             />
           </form>
         )}

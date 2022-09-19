@@ -14,15 +14,13 @@ const Timer = ({ data }) => {
     };
   }, [timer]);
 
-  if (timer === 0) {
-    return;
-  }
-
   return (
-    <>
-      <span>{data.title}</span>
-      <span>{done ? 'selesai' : timer}</span>
-    </>
+    <tbody>
+      <tr className="bg-green-300 text-center border-2 text-white">
+        <td className="p-1">{data.title}</td>
+        <td>{done ? 'Waktu Habis' : timer}</td>
+      </tr>
+    </tbody>
   );
 };
 
