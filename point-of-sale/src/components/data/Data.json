@@ -1,0 +1,20 @@
+[
+  {
+    "id": 1,
+    "title": "aqua",
+    "qty": 1,
+    "price": 13000
+  },
+  {
+    "id": 2,
+    "title": "mobil",
+    "qty": 1,
+    "price": 12000
+  },
+  {
+    "id": 3,
+    "title": "rumah",
+    "qty": 1,
+    "price": 20000
+  }
+]
