@@ -9,8 +9,9 @@ const Cashier = () => {
     setItems([...items, { ...product }]);
   };
 
-  const total = items.reduce((items) => {
-    return items.price * items.qty;
+  let harga = 0;
+  items.forEach((item) => {
+    harga += item.price * item.qty;
   });
 
   return (
@@ -34,7 +35,7 @@ const Cashier = () => {
         <tbody>
           <Items items={items} />
           <tr>
-            <td>{total}</td>
+            <td>total :{harga} </td>
           </tr>
         </tbody>
       </table>

@@ -6,8 +6,8 @@ const Items = ({ items }) => {
           <td>{index + 1}</td>
           <td>{item.title}</td>
           <td>{item.qty}</td>
-          <td>{item.price * item.quantity}</td>
-          <td></td>
+          <td>{item.price}</td>
+          <td>{item.price * item.qty}</td>
           <td>Hapus</td>
         </tr>
       ))}
