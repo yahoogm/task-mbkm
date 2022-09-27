@@ -16,12 +16,10 @@ const Cashier = () => {
     setItems(updateList);
   };
 
-  const handleChangeQty = (id) => {
-    const newTask = items.map((item) => {
-      return item.id === id ? { ...item, qty: item.qty + 1 } : { ...item, qty: item.qty - 1 };
-    });
-    setItems(newTask);
-    console.log(newTask);
+  const handleChangeQty = (index, qty) => {
+    const newItems = [...items];
+    newItems[index].qty = qty;
+    setItems(newItems);
   };
 
   let harga = 0;
