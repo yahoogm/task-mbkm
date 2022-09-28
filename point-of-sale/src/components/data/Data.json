@@ -1,0 +1,30 @@
+[
+  {
+    "id": 1,
+    "title": "Meat Lover",
+    "price": 49500
+  },
+  {
+    "id": 2,
+    "title": "Super Supreme",
+    "price": 50000
+  },
+
+  {
+    "id": 3,
+    "title": "Tuna Melt",
+    "price": 25000
+  },
+
+  {
+    "id": 4,
+    "title": "American Favourite",
+    "price": 15000
+  },
+
+  {
+    "id": 5,
+    "title": "Beef Spaghetti",
+    "price": 2000
+  }
+]
