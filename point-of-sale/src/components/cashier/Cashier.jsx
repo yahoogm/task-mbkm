@@ -1,22 +1,29 @@
-import React, { useState } from "react";
-import AddItems from "../additems/AddItems";
-import Items from "../items/Items";
+import React, { useState, useRef } from 'react';
+import AddItems from '../additems/AddItems';
+import Items from '../items/Items';
 
 const Cashier = () => {
+  const refAddItems = useRef(null);
   const [items, setItems] = useState([]);
   const [showAddItems, setShowAddItems] = useState(true);
   const handleAddItems = (product) => {
-    setItems([...items, { ...product }]);
+    setItems([...items, { ...product, qty: 1 }]);
   };
 
   const handleDelete = (id) => {
+    let add = items.find((product) => product.id === id);
+    console.log(add);
+
     let updateList = items.filter((item) => {
       return item.id !== id;
     });
     setItems(updateList);
+
+    refAddItems.current.handleAddBack(add);
   };
 
   const handleChangeQty = (index, qty) => {
+    console.log(index, qty);
     const newItems = [...items];
     newItems[index].qty = qty;
     setItems(newItems);
@@ -30,14 +37,14 @@ const Cashier = () => {
   return (
     <div>
       <button className="bg-blue-300 p-2 rounded-md shadow-md text-white" onClick={() => setShowAddItems(!showAddItems)}>
-        {showAddItems ? "Hide items" : "Show Items"}
+        {showAddItems ? 'Hide items' : 'Show Items'}
       </button>
-      {showAddItems && <AddItems onHandleAddItems={handleAddItems} />}
+      {showAddItems && <AddItems ref={refAddItems} onHandleAddItems={handleAddItems} />}
 
       <table className="w-full border">
         <thead className="">
           <tr>
-            <td>no</td>
+            <td>No</td>
             <td>Title</td>
             <td>Qty</td>
             <td>Price</td>
