@@ -1,48 +1,35 @@
-import "./App.css";
+import './App.css';
 
 const supplier = [
-  { id: 1, name: "Desi" },
-  { id: 2, name: "Dedi" },
-  { id: 3, name: "Dodi" },
+  { id: 1, name: 'Desi' },
+  { id: 2, name: 'Dedi' },
+  { id: 3, name: 'Dodi' },
 ];
 
-const supplierAndItem = [
-  { supplier_id: 1, item_name: "Aqua", item_price: 3000 },
-  { supplier_id: 2, item_name: "Buku", item_price: 2000 },
-  { supplier_id: 3, item_name: "Ember", item_price: 5000 },
+const item = [
+  { supplier_id: 1, title: 'Aqua', price: 3000 },
+  { supplier_id: 1, title: 'Buku', price: 4000 },
+  { supplier_id: 2, title: 'Buku', price: 2000 },
+  { supplier_id: 2, title: 'Kecap', price: 2000 },
+  { supplier_id: 3, title: 'Ember', price: 5000 },
 ];
 
-const supplier_group_by_id = [
-  {
-    id: 1,
-    name: "Desi",
-    item_name: "Aqua",
-    item_price: 3000,
-  },
-  {
-    id: 1,
-    name: "Desi",
-    item_name: "Ember",
-    item_price: 2000,
-  },
-];
-
-const supplier_id_items_container = [];
-supplier_group_by_id.forEach((supplier) => {
-  if (typeof supplier_id_items_container[supplier.name] === "undefined") {
-    supplier_id_items_container[supplier.name] = [];
-  }
-  if (typeof supplier_id_items_container[supplier.name][supplier.item_name] === "undefined") {
-    supplier_id_items_container[supplier.name][supplier.item_name] = [];
-  }
-
-  supplier_id_items_container[supplier.name][supplier.item_name].push(supplier);
+// Function Group By Supplier
+const groupBySupplier = supplier.map((s) => {
+  const filItemSupplier = item.filter((i) => {
+    return s.id === i.supplier_id;
+  });
+  return { supplier: s, supplier_item: filItemSupplier };
 });
 
-const supplier_product_container = [];
-supplierAndItem.forEach((supp) => {});
-
-console.log(supplier_id_items_container);
+// Function group by item
+const groupByItem = item.map((i) => {
+  const satu = supplier.find((s) => {
+    return i.supplier_id === s.id;
+  });
+  return { supplier: satu, item: i };
+});
+console.log(groupByItem);
 
 function App() {
   return (
@@ -50,19 +37,43 @@ function App() {
       <table>
         <thead>
           <tr>
-            <th className="border">Name</th>
-            <th className="border">Item Name</th>
-            <th className="border">Price</th>
+            <th>Group By Supplier</th>
           </tr>
         </thead>
         <tbody>
-          {supplier_id_items_container.map((supplier) => {
-            return (
+          {groupBySupplier.map((grup) => (
+            <>
               <tr>
-                <td>{supplier.name}</td>
+                <td className="bg-green-200" colSpan={3}>
+                  {grup.supplier.name}
+                </td>
               </tr>
-            );
-          })}
+              {grup.supplier_item.map((g) => (
+                <tr>
+                  <td></td>
+                  <td>{g.title}</td>
+                  <td>{g.price}</td>
+                </tr>
+              ))}
+            </>
+          ))}
+        </tbody>
+      </table>
+
+      <table>
+        <thead>
+          <tr>
+            <th>Group By Item</th>
+          </tr>
+        </thead>
+        <tbody>
+          {groupByItem.map((item) => (
+            <>
+              <tr>
+                <td>{item.item.title}</td>
+              </tr>
+            </>
+          ))}
         </tbody>
       </table>
     </div>
